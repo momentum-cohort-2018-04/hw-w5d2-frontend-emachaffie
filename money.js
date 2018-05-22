@@ -44,10 +44,28 @@ export class Bank {
     this.rates = rates
   }
 
+  toUSD (money, desiredCurrencyCode) {
+    for (var rate of this.rates) {
+      if (rate.abbr === money.currencyCode) {
+        var moneyInUSD = new Money(money.getAmount() * rate.rateInUSD, desiredCurrencyCode)
+        console.log(moneyInUSD)
+      }
+    }
+  }
+
+  fromUSD (money, desiredCurrencyCode) {
+    for (var rate of this.rates) {
+      if (rate.abbr === desiredCurrencyCode) {
+        return new Money(money.getAmount() / rate.rateInUSD, desiredCurrencyCode)
+      }
+    }
+  }
+
   exchange (money, desiredCurrencyCode) {
     if (money.currencyCode === desiredCurrencyCode) {
       return money
     }
+    // To USD
     if (desiredCurrencyCode === 'USD') {
       for (var rate of this.rates) {
         if (rate.abbr === money.currencyCode) {
@@ -55,6 +73,22 @@ export class Bank {
         }
       }
       return new Money(money.getAmount() * rate.rateInUSD, desiredCurrencyCode)
+    }
+    // From USD
+    if (money.currencyCode === 'USD') {
+      for (rate of this.rates) {
+        if (rate.abbr === desiredCurrencyCode) {
+          break
+        }
+      }
+      return new Money(money.getAmount() / rate.rateInUSD, desiredCurrencyCode)
+    } else {
+      for (rate of this.rates) {
+        if (rate.abbr === money.currencyCode) {
+          var thisInUSD = this.toUSD(money)
+          var finalAnswer = this.fromUSD(thisInUSD)
+        }
+      }
     }
   }
 }

@@ -20,6 +20,22 @@ test('5 Wizard Galleons should equal 25 USD', () => {
   expect(bank.exchange(wizardgals, toCurrencyCode)).toEqual(new Money(25, 'USD'))
 })
 
+// * Given a Money object with the currency code of USD and any other currency code to convert to, it should return the correct amount of money.
+test('25 USD should convert to 5 WGA', () => {
+  const moneyInUSD = new Money(25, 'USD')
+  const toCurrencyCode = 'WGA'
+  const bank = new Bank([{'abbr': 'WGA', 'name': 'Wizard Galleon', 'rateInUSD': 5}, {'abbr': 'FRC', 'name': 'Forgotten Realms Copper', 'rateInUSD': 0.2}, {'abbr': 'AMD', 'name': 'Ankh-Morpork Dollar', 'rateInUSD': 0.8}])
+  expect(bank.exchange(moneyInUSD, toCurrencyCode)).toEqual(new Money(5, 'WGA'))
+})
+
+// * Given a Money object and a currency code to convert to, neither of which are in USD, it should return the correct amount of money.
+test('2 wizard galleons should equal 50 FRC', () => {
+  const wizardgals = new Money(2, 'WGA')
+  const toCurrencyCode = 'FRC'
+  const bank = new Bank([{'abbr': 'WGA', 'name': 'Wizard Galleon', 'rateInUSD': 5}, {'abbr': 'FRC', 'name': 'Forgotten Realms Copper', 'rateInUSD': 0.2}, {'abbr': 'AMD', 'name': 'Ankh-Morpork Dollar', 'rateInUSD': 0.8}])
+  expect(bank.exchange(wizardgals, toCurrencyCode)).toEqual(new Money(50, 'FRC'))
+})
+
 // You are going to create a web site for currency exchange, using fantasy currencies from [this fantasy currency API](http://fantasy-currency.glitch.me/rates).
 
 // To start, you will need a Money class that has an amount and a currency code. This class can be taken from the example code from class today.
