@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "devDependencies": {
+    "babel-jest": "^22.4.4",
+    "jest": "^22.4.4",
+    "parcel-bundler": "^1.8.1"
+  },
+  "dependencies": {
+    "babel-preset-env": "^1.7.0"
+  },
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build --no-source-maps index.html",
+    "deploy": "npm run build && surge --domain fantasyexchangeb.surge.sh dist/",
+    "test": "jest"}
+
+
+  }
