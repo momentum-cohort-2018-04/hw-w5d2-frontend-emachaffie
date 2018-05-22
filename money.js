@@ -47,8 +47,7 @@ export class Bank {
   toUSD (money, desiredCurrencyCode) {
     for (var rate of this.rates) {
       if (rate.abbr === money.currencyCode) {
-        var moneyInUSD = new Money(money.getAmount() * rate.rateInUSD, desiredCurrencyCode)
-        console.log(moneyInUSD)
+        return new Money(money.getAmount() * rate.rateInUSD, desiredCurrencyCode)
       }
     }
   }
@@ -87,6 +86,8 @@ export class Bank {
         if (rate.abbr === money.currencyCode) {
           var thisInUSD = this.toUSD(money)
           var finalAnswer = this.fromUSD(thisInUSD)
+          // Does above line need to go under rate.abbr === desiredCurrencyCode? Yes....yes it does...
+          return finalAnswer
         }
       }
     }
