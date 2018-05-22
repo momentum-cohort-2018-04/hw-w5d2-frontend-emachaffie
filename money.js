@@ -48,5 +48,13 @@ export class Bank {
     if (money.currencyCode === desiredCurrencyCode) {
       return money
     }
+    if (desiredCurrencyCode === 'USD') {
+      for (var rate of this.rates) {
+        if (rate.abbr === money.currencyCode) {
+          break
+        }
+      }
+      return new Money(money.getAmount() * rate.rateInUSD, desiredCurrencyCode)
+    }
   }
 }
