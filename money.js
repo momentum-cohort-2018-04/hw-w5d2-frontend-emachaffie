@@ -1,7 +1,25 @@
-// import results from 'superagent'
+import request from 'superagent'
+import $ from 'jquery'
 
+window.$ = $
 const PRECISION = 3
 const EXPONENT = (10 ** PRECISION)
+
+$('#submit-button').click(function (event) {
+  event.preventDefault()
+  // Get value of "amount" and "from-currency-code" and create new Money object
+  // Get value of "to-currency-code"
+  // Pass Money and toCurrencyCode to the function "exchange"
+  //
+})
+
+// Event listener that queries API for rates
+window.addEventListener('load', function () {
+  updateRates()
+}
+)
+
+// function updateRates ()
 
 export class Money {
   constructor (amount, currencyCode) {
