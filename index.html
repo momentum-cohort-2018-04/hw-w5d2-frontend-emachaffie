@@ -16,10 +16,33 @@
     <!-- /* Make your form */ -->
     <div class = "currencyForm">
       <form>
+        <p>What currency do you want to exchange?</p>
         <label for="money-amount">Amount</label>
         <input type="text">
-        <label for="currencyCode">Currency</label>
-        <input type="radio">
+        <label for="from-currency-code">Currency</label>
+        <select name="Choose Currency Type" id = "from-currency-code">
+            <option value="USD">USD</option>
+            <option value="NLN">NLN</option>
+            <option value="GCA">GCA</option>
+            <option value="WGA">WGA</option>
+            <option value="FRC">FRC</option>
+            <option value="AMD">AMD</option>
+            <option value="FPB">FPB</option>
+            <option value="VTH">VTH</option>
+          </select>
+          <p>What currency would you like to exchange to?</p>
+          <label for="to-currency-code">Currency</label>
+          <select name="Choose Currency Type" id = "to-currency-code">
+              <option value="USD">USD</option>
+              <option value="NLN">NLN</option>
+              <option value="GCA">GCA</option>
+              <option value="WGA">WGA</option>
+              <option value="FRC">FRC</option>
+              <option value="AMD">AMD</option>
+              <option value="FPB">FPB</option>
+              <option value="VTH">VTH</option>
+            </select>
+        
         <button type="submit">Submit</button>
       </form>
     </div>
