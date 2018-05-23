@@ -5,22 +5,6 @@ window.$ = $
 const PRECISION = 3
 const EXPONENT = (10 ** PRECISION)
 
-$('#submit-button').click(function (event) {
-  event.preventDefault()
-  // Get value of "amount" and "from-currency-code" and create new Money object
-  // Get value of "to-currency-code"
-  // Pass Money and toCurrencyCode to the function "exchange"
-  //
-})
-
-// Event listener that queries API for rates
-window.addEventListener('load', function () {
-  updateRates()
-}
-)
-
-// function updateRates ()
-
 export class Money {
   constructor (amount, currencyCode) {
     const decimalAsStr = amount.toString().split('.')[1]
@@ -111,3 +95,32 @@ export class Bank {
     }
   }
 }
+
+let rates = new Bank([])
+
+// Event listener that queries API for rates
+window.addEventListener('load', function () {
+  updateRates()
+}
+)
+
+// Function that updates rates on load
+function updateRates () {
+  // event.preventDefault()
+  request
+    .get(`http://fantasy-currency.glitch.me/rates`)
+    .then(response => {
+      let updatedRates = response
+      rates.push(updatedRates)
+      console.log(rates)
+    })
+}
+
+$('#submit-button').click(function (event) {
+  event.preventDefault()
+
+  // Get value of "amount" and "from-currency-code" and create new Money object
+  // Get value of "to-currency-code"
+  // Pass Money and toCurrencyCode to the function "exchange"
+  //
+})
